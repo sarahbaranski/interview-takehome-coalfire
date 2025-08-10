@@ -1,5 +1,5 @@
 data "aws_availability_zones" "available" {
-    state = "available"
+  state = "available"
 }
 
 module "vpc" {
@@ -24,7 +24,7 @@ module "vpc" {
   default_security_group_egress  = []
 
   tags = {
-    Name = "vpc-main"
+    Name        = "vpc-main"
     Environment = "dev"
   }
 }
