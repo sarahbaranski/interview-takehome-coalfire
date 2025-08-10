@@ -27,7 +27,7 @@
 ## References to resources used
 * [Three-tier web app](https://medium.com/@aaloktrivedi/building-a-3-tier-web-application-architecture-with-aws-eb5981613e30)
 
-* Various AWS docs and module source code
+* Various AWS docs based on resources used and module source code
 
 ## Analysis
 * Instead of using a bastion host, I would consider using AWS Systems Manger in order to avoid opening ports and would allow me to reduce potential attack surfaces and therefore enhancing security.
