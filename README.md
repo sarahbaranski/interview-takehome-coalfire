@@ -22,7 +22,7 @@
 
 - I would want to deploy two NAT gateways. One in each public subnet in each AZ. This would maintain high availability but at a cost since Nat Gateways can be expensive. As of right now, if the subnet with the Nat Gateway goes down, then the other Management subnet is dead in the water.
 
-- I don't have any monitoring set up on anything. Which is obvious an issue and something that would need to be remedied to make this production ready.
+- I don't have any monitoring set up on anything (with the exception of some default monitoring on the ec2 instances). Which is obvious an issue and something that would need to be remedied to make this production ready.
 
 ## Improvement plan with priorities
 -
