@@ -13,7 +13,7 @@ module "vpc" {
   public_subnets  = var.public_subnet_ids
   private_subnets = var.private_subnet_ids
 
-  enable_nat_gateway = false
+  enable_nat_gateway = true
   single_nat_gateway = true
 
   manage_default_route_table = true
@@ -24,7 +24,7 @@ module "vpc" {
   default_security_group_egress  = []
 
   tags = {
-    Name = "main"
+    Name = "vpc-main"
     Environment = "dev"
   }
 }
