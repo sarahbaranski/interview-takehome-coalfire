@@ -5,6 +5,7 @@ data "aws_vpc" "selected" {
   }
 }
 
+# Application instance with user data attached
 module "ec2_instance_application_1" {
   source = "terraform-aws-modules/ec2-instance/aws"
 
@@ -27,6 +28,7 @@ module "ec2_instance_application_1" {
   }
 }
 
+# Application instance
 module "ec2_instance_application_2" {
   source = "terraform-aws-modules/ec2-instance/aws"
 
