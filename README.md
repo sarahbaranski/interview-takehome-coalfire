@@ -14,9 +14,9 @@
 
 * I was torn between using the EC2 module Coalfire has, and the one I ended up going with. It still needs some work to spin up instances in the correct subnets, and key pairs. I grabbed the [apache_install script](https://medium.com/@aaloktrivedi/automating-an-apache-web-server-with-an-amazon-ec2-instance-a-step-by-step-guide-5bad757d0a0e) from this source, that I was attempting to spin up on instances in one of the application subnets.
 
-* Things that I need to be finished to meet the requirements:
+* Things that need to be finished:
 
-  * Finish up the EC2 module
+  * Finish up the EC2 module, make sure key pair is created for security purposes
   * Add Security groups with the correct rules to allow SSH from that Management tier to the Application tier
   * Finish up the ASG and make sure the instances in the application tier are in that group
   * Add the ALB and security group rules for traffic to the ALB from the instances in the Application tier and from the ALB to the Internet Gateway
