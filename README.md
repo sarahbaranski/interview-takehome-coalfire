@@ -46,5 +46,3 @@
 * Monitoring would be a priority here. Setting up cloudwatch alerts for traffic as well as on the ASG to determine usage. Using CloudTrail to log and monitor actions for auditing and compliance.
 
 * IAM roles. There aren't any in place and in order to ensure that access is done by the appropriate resource or user, those roles and policies would be vital. Enforcing the principle of least privilege on the Application tier would something to add.
-
-* Having a database on the backend tier with security group rules allowing the application tier to communicate with the database.
