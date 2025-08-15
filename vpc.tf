@@ -6,12 +6,12 @@ module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
   version = "5.0"
 
-  name = "vpc-main"
+  name = "vpc-coalfire"
   cidr = var.vpc_cidr
 
   azs             = slice(data.aws_availability_zones.available.names, 0, 2)
-  public_subnets  = var.public_subnet_ids
-  private_subnets = var.private_subnet_ids
+  public_subnets  = var.public_subnets
+  private_subnets = var.private_subnets
 
   enable_nat_gateway = true
   single_nat_gateway = true
@@ -24,7 +24,7 @@ module "vpc" {
   default_security_group_egress  = []
 
   tags = {
-    Name        = "vpc-main"
+    Name        = "vpc-coalfire"
     Environment = "dev"
   }
 }
