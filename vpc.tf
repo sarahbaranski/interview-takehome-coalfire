@@ -12,6 +12,7 @@ module "vpc" {
   azs             = slice(data.aws_availability_zones.available.names, 0, 2)
   public_subnets  = var.public_subnets
   private_subnets = var.private_subnets
+  intra_subnets = var.intra_subnets
 
   enable_nat_gateway = true
   single_nat_gateway = true
@@ -22,6 +23,9 @@ module "vpc" {
   default_security_group_name    = var.vpc_sg_name
   default_security_group_ingress = []
   default_security_group_egress  = []
+
+  private_subnet_tags = { Type = "private"}
+  intra_subnet_tags = { Type = "intra" }
 
   tags = {
     Name        = "vpc-coalfire"
