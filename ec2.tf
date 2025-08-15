@@ -57,6 +57,16 @@ module "ec2_instance_managment" {
   root_volume_size = "20"
 
   #  Security Group Rules
+  ingress_rules = {
+    "ssh" = {
+      ip_protocol = "tcp"
+      from_port   = "22"
+      to_port     = "22"
+      cidr_ipv4   = var.my_ip
+      description = "Allow SSH"
+    }
+  }
+
   egress_rules = {
     "allow_all_egress" = {
       ip_protocol = "-1"
@@ -66,5 +76,8 @@ module "ec2_instance_managment" {
   }
 
   # Tagging
-  global_tags = {}
+  tags = {
+    Environment = "Development"
+    Project     = "Coalfire"
+  }
 }

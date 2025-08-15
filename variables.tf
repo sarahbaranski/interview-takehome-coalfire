@@ -51,3 +51,8 @@ variable "launch_template_description" {
   type        = string
   default     = "Launch template application"
 }
+
+variable "my_ip" {
+  description = "My ip address to use to ssh"
+  type        = string
+}

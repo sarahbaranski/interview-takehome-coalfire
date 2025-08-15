@@ -6,6 +6,7 @@ module "alb" {
   subnets = module.vpc.private_subnets
 
   # Security Group
+  security_group_name = "coalfire-alb-sg"
   security_group_ingress_rules = {
     all_http = {
       from_port   = 80

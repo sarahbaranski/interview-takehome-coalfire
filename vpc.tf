@@ -27,8 +27,10 @@ module "vpc" {
   private_subnet_tags = { Type = "private"}
   intra_subnet_tags = { Type = "intra" }
 
+  map_public_ip_on_launch = true
+
   tags = {
-    Name        = "vpc-coalfire"
-    Environment = "dev"
+    Name        = "coalfire-vpc"
+    Environment = "Development"
   }
 }
