@@ -53,6 +53,8 @@ module "ec2_instance_managment" {
   ebs_optimized   = false
   ebs_kms_key_arn = aws_kms_key.ebs_key.arn
 
+  associate_public_ip = true
+
   # Storage
   root_volume_size = "20"
 
@@ -80,4 +82,6 @@ module "ec2_instance_managment" {
     Environment = "Development"
     Project     = "Coalfire"
   }
+
+  global_tags = {}
 }
