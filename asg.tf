@@ -1,5 +1,6 @@
 module "asg" {
   source = "terraform-aws-modules/autoscaling/aws"
+  version = "8.0.1"
 
   # Autoscaling group
   name = var.application_asg_name
@@ -8,8 +9,8 @@ module "asg" {
   max_size                  = 6
   desired_capacity          = 2
   wait_for_capacity_timeout = 0
-  health_check_type         = "EC2"
-  vpc_zone_identifier       = ["10.1.11.0/24", "10.1.12.0/24"]
+  health_check_type         = "ELB" # allows the ALB to control how the health checking is done
+  vpc_zone_identifier       = module.vpc.private_subnets
 
   initial_lifecycle_hooks = [
     {
@@ -27,27 +28,16 @@ module "asg" {
       # notification_metadata = jsonencode({ "goodbye" = "world" })
     }
   ]
-
-  instance_refresh = {
-    strategy = "Rolling"
-    preferences = {
-      checkpoint_delay       = 600
-      checkpoint_percentages = [35, 70, 100]
-      instance_warmup        = 300
-      min_healthy_percentage = 50
-      max_healthy_percentage = 100
-    }
-    triggers = ["tag"]
-  }
+  security_groups = [module.asg_sg.security_group_id]
 
   # Launch template
   launch_template_name        = var.application_asg_name
   launch_template_description = var.launch_template_description
   update_default_version      = true
 
-  image_id          = var.ami
+  image_id          = data.aws_ami.ubuntu.image_id
   instance_type     = var.instance_size
-  ebs_optimized     = true
+  ebs_optimized     = false
   enable_monitoring = true
 
   # This will ensure imdsv2 is enabled, required, and a single hop which is aws security
