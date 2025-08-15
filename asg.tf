@@ -11,7 +11,6 @@ module "asg" {
   wait_for_capacity_timeout = 0
   health_check_type         = "ELB" # allows the ALB to control how the health checking is done
   vpc_zone_identifier       = module.vpc.private_subnets
-  user_data                 = file("apache_install.sh")
 
   initial_lifecycle_hooks = [
     {
@@ -19,14 +18,12 @@ module "asg" {
       default_result       = "CONTINUE"
       heartbeat_timeout    = 60
       lifecycle_transition = "autoscaling:EC2_INSTANCE_LAUNCHING"
-      # notification_metadata = jsonencode({ "hello" = "world" })
     },
     {
       name                 = "ApplicationTerminationLifeCycleHook"
       default_result       = "CONTINUE"
       heartbeat_timeout    = 180
       lifecycle_transition = "autoscaling:EC2_INSTANCE_TERMINATING"
-      # notification_metadata = jsonencode({ "goodbye" = "world" })
     }
   ]
   security_groups = [module.asg_sg.security_group_id]
@@ -40,6 +37,7 @@ module "asg" {
   instance_type     = var.instance_size
   ebs_optimized     = false
   enable_monitoring = true
+  user_data         = base64encode("apache_install.sh")
 
   # This will ensure imdsv2 is enabled, required, and a single hop which is aws security
   # best practices
