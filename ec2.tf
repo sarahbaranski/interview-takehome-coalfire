@@ -50,13 +50,13 @@ module "ec2_instance_managment" {
   subnet_ids = module.vpc.public_subnets
 
   ec2_key_pair    = "ec2-module-test"
-  ebs_optimized = false
+  ebs_optimized   = false
   ebs_kms_key_arn = aws_kms_key.ebs_key.arn
 
   # Storage
   root_volume_size = "20"
 
-#  Security Group Rules
+  #  Security Group Rules
   egress_rules = {
     "allow_all_egress" = {
       ip_protocol = "-1"
