@@ -1,5 +1,5 @@
 module "asg" {
-  source = "terraform-aws-modules/autoscaling/aws"
+  source  = "terraform-aws-modules/autoscaling/aws"
   version = "8.0.1"
 
   # Autoscaling group
@@ -11,6 +11,7 @@ module "asg" {
   wait_for_capacity_timeout = 0
   health_check_type         = "ELB" # allows the ALB to control how the health checking is done
   vpc_zone_identifier       = module.vpc.private_subnets
+  user_data                 = file("apache_install.sh")
 
   initial_lifecycle_hooks = [
     {
