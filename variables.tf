@@ -4,14 +4,14 @@ variable "vpc_cidr" {
   default     = "10.1.0.0/16"
 }
 
-variable "private_subnet_ids" {
-  description = "Range of private subnet ids"
+variable "private_subnets" {
+  description = "Range of private subnets"
   type        = list(string)
   default     = ["10.1.11.0/24", "10.1.12.0/24", "10.1.13.0/24", "10.1.14.0/24"]
 }
 
-variable "public_subnet_ids" {
-  description = "Range of public subnet ids"
+variable "public_subnets" {
+  description = "Range of public subnets"
   type        = list(string)
   default     = ["10.1.1.0/24", "10.1.2.0/24"]
 }
@@ -20,12 +20,6 @@ variable "vpc_sg_name" {
   description = "Name of the SG in VPC"
   type        = string
   default     = "vpc_sg"
-}
-
-variable "application_instance_name" {
-  description = "Name of Application instances"
-  type        = string
-  default     = "application"
 }
 
 variable "management_instance_name" {
@@ -38,19 +32,6 @@ variable "instance_size" {
   description = "Size of instances"
   type        = string
   default     = "t2.micro"
-}
-
-variable "ami" {
-  description = "AMI id"
-  type        = string
-  default     = "ami-0de716d6197524dd9"
-}
-
-# This needs to be set up as the default value is an empty string
-variable "key_name" {
-  description = "Name of EC2 key pair"
-  type        = string
-  default     = ""
 }
 
 variable "application_asg_name" {
