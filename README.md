@@ -74,7 +74,7 @@ Should allow you to ssh into the instance.
 * [Subnet data source](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/subnets)
 
 ## Analysis
-* Instead of using a bastion host, using AWS Systems Manger in order to avoid opening ports and reduce potential attack surfaces and therefore enhancing security.
+* Instead of using a bastion host, using AWS Systems Manger in order to avoid opening ports and reduce potential attack surfaces and therefore enhancing security. Or at the very least, have seperate key/pairs per instance.
 
 * A WAF of in front of the ALB could protect the service from potential vulnerabilities.
 
@@ -89,8 +89,11 @@ Should allow you to ssh into the instance.
 * There isn't any sort of Database or S3 bucket set up, but if there was it would probably be beneficial to have backups and/or duplication set up to ensure availability and redundancy.
 
 ## Improvement plan with priorities
-* Monitoring would be a priority here. Setting up cloudwatch alerts for traffic as well as on the ASG to determine usage. Using CloudTrail to log and monitor actions for auditing and compliance.
+1. Monitoring would be a priority here. Setting up cloudwatch alerts for traffic as well as on the ASG to determine usage. Using CloudTrail to log and monitor actions for auditing and compliance.
 
-* IAM roles. There aren't any in place and in order to ensure that access is done by the appropriate resource or user, those roles and policies would be vital. Enforcing the principle of least privilege on the Application tier would be something to add.
+2. Having a database on the backend tier with security group rules allowing the application tier to communicate with the database.
 
-* Having a database on the backend tier with security group rules allowing the application tier to communicate with the database.
+3. IAM roles. There aren't any in place and in order to ensure that access is done by the appropriate resource or user, those roles and policies would be vital. Enforcing the principle of least privilege on the Application tier would be something to add. Maybe adding IAM group roles for who can access the Management instances would be something to consider.
+
+## Final Notes
+I have experience working with these components but in my experience a lot of this was always set up already and I would do some tweaking. I really enjoyed being able to make something work from scratch, discovering some things about what makes all these resources work and how those things are defined in Terraform, as well as thinking about the secuirty implications that comes with this. I am sure I haven't thought of everything, and I'd welcome a conversation to hear about anything I didn't consider.
